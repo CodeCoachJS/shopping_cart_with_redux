@@ -1,0 +1,15 @@
+.shoppingCart {
+    position: absolute;
+    height: 100vh;
+    width: 400px;
+    right: 0;
+    top: 0;
+    background-color: #ffff;
+    padding: 1em;
+    border: 1px solid lightgray;
+    overflow-y: scroll;
+}
+
+.closeIcon:hover {
+    cursor: pointer;
+}

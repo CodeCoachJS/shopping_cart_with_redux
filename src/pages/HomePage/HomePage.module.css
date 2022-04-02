@@ -1,0 +1,20 @@
+.productContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.header {
+    text-align: center;
+}
+
+.productCard {
+    width: 20%;
+    padding: 1em;
+    margin: auto;
+    text-align: center;
+}
+
+.shopNow:hover {
+    cursor: pointer;
+}
