@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart } from '../../ducks/shoppingDucks';
+import { toggleCart } from '../../ducks/shopping.ducks';
 import styles from './ShoppingCart.module.css';
 
 const ShoppingCart = () => {
@@ -13,6 +13,7 @@ const ShoppingCart = () => {
 
     const { items = [] } = cart;
     const total = items.reduce((acc, item) => item.price + acc, 0);
+
     return (
         <div className={styles.shoppingCart}>
             <div

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import shoppingDucks from './shoppingDucks';
+import cart from './shopping.ducks';
 
 const rootReducer = combineReducers({
-    cart: shoppingDucks,
+    cart,
 });
 
 export default rootReducer;

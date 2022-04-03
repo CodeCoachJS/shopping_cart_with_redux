@@ -41,9 +41,7 @@ const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
                 isOpen: true,
                 items: [...state.items, payload],
             };
-        case 'FAKE_EVENT':
-            console.log('YO REDUX WORKS');
-            break;
+
         default:
             return state;
     }
