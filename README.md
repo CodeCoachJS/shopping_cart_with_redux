@@ -50,6 +50,8 @@ In the example above, our reducer listens for an `ADD_TO_CART` event and updates
 
 https://www.loom.com/share/e29215f4c7a545c29f5c26e5d06f7819
 
+https://www.loom.com/share/2e26762f8234400bb2183f60440906be
+
 ## TODO
 
 ---
