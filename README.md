@@ -63,4 +63,5 @@ You need to add actions for:
 -   [ ] Removing an item from the cart
 
 -   [ ] Updating the quantity of an item - for example, adding the same item should increment the quantity of that item rather than adding it twice
+
 -   [ ] BONUS: Add some tests using `@testing-library`

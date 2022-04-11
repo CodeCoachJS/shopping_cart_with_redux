@@ -42,6 +42,6 @@ describe('ShoppingCart', () => {
     });
 
     // hmmm... how would you test this? The disappearance of an item
-    // OR that an action was called perhaps... like the `removeFromCart` action perhaps
+    // OR that an action was called... like the `removeFromCart` action perhaps
     it('removes an item from the cart', () => {});
 });
