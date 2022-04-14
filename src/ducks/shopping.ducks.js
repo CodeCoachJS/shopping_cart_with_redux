@@ -29,12 +29,11 @@ export const removeFromCart = (id) => {
 const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
     const { payload, type } = action;
     switch (type) {
-        case TOGGLE_CART: {
+        case TOGGLE_CART:
             return {
                 ...state,
                 isOpen: payload,
             };
-        }
         case ADD_TO_CART:
             return {
                 ...state,

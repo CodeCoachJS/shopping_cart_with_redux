@@ -66,4 +66,6 @@ You need to add actions for:
 
 -   [ ] Updating the quantity of an item - for example, adding the same item should increment the quantity of that item rather than adding it twice
 
+-   [ ] Ya know, Redux is a bit overkill for this app... how could use the Context API to lift state and achieve the same capability? How would you tests change?
+
 -   [ ] BONUS: Add some tests using `@testing-library`
