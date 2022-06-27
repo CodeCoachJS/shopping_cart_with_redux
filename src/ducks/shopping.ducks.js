@@ -25,8 +25,21 @@ export const removeFromCart = (id) => {
     };
 };
 
+/**
+ * _removeItemByKey
+ * @param {string} key
+ * @param {object} obj
+ * @returns a copy of the original object with the key removed
+ */
+
+const _removeItemByKey = (key, obj) => {
+    const copy = { ...obj };
+    delete copy[key];
+    return { ...copy };
+};
+
 // REDUCERS
-const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
+const addToCartReducer = (state = { isOpen: false, items: {} }, action) => {
     const { payload, type } = action;
     switch (type) {
         case TOGGLE_CART:
@@ -38,8 +51,28 @@ const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
             return {
                 ...state,
                 isOpen: true,
-                items: [...state.items, payload],
+                items: state.items[payload.id]
+                    ? {
+                          ...state.items,
+                          [payload.id]: {
+                              ...payload,
+                              qty: (state.items[payload.id].qty += 1),
+                          },
+                      }
+                    : {
+                          ...state.items,
+                          [payload.id]: {
+                              ...payload,
+                              qty: 1,
+                          },
+                      },
             };
+        case REMOVE_FROM_CART: {
+            return {
+                ...state,
+                items: _removeItemByKey(payload, state.items),
+            };
+        }
 
         default:
             return state;

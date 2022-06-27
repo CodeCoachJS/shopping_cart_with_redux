@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 describe('ShoppingCart', () => {
-    it('displays the total price of multiple items', () => {
+    it('displays the total price of an item', () => {
         // this component relies on the redux store being present with certain properties
         // we set the environment (scene) and can then test what we would expect in a 'real' scenario
 
@@ -14,20 +14,21 @@ describe('ShoppingCart', () => {
             getState: () => ({
                 cart: {
                     isOpen: true,
-                    items: [
-                        {
+                    items: {
+                        1: {
                             id: 1,
-                            title: 'Pants',
-                            price: 12,
-                            image: 'https://www.image1.com',
-                        },
-                        {
-                            id: 2,
-                            title: 'Shorts',
+                            title: 'Some Product',
                             price: 11,
-                            image: 'https://www.image2.com',
+                            description: 'For cool guys',
+                            category: "men's clothing",
+                            image: 'https://fakestoreapi.com/img/1',
+                            rating: {
+                                rate: 4,
+                                count: 5,
+                            },
+                            qty: 1,
                         },
-                    ],
+                    },
                 },
             }),
         };
@@ -38,8 +39,11 @@ describe('ShoppingCart', () => {
             </Provider>
         );
 
-        expect(screen.getByText('Total: $23.00')).toBeInTheDocument();
+        expect(screen.getByText('Total: $11.00')).toBeInTheDocument();
     });
+
+    // HINT: you'll need your store to have at least 2 items in it and at least 1 should have a qty value > 1
+    it('sums the total for multiple items with different quantities', () => {});
 
     // hmmm... how would you test this? The disappearance of an item
     // OR that an action was called... like the `removeFromCart` action perhaps

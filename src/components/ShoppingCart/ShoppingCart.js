@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart } from '../../ducks/shopping.ducks';
+import { toggleCart, removeFromCart } from '../../ducks/shopping.ducks';
 import styles from './ShoppingCart.module.css';
 
 const ShoppingCart = () => {
@@ -11,8 +11,11 @@ const ShoppingCart = () => {
         return <></>;
     }
 
-    const { items = [] } = cart;
-    const total = items.reduce((acc, item) => item.price + acc, 0);
+    const { items = {} } = cart;
+    const total = Object.keys(items).reduce((acc, cur) => {
+        acc += items[cur].price * (items[cur].qty || 1);
+        return acc;
+    }, 0);
 
     return (
         <div className={styles.shoppingCart}>
@@ -23,15 +26,20 @@ const ShoppingCart = () => {
                 X
             </div>
             <h2>Items</h2>
-            {items.map((item) => (
+            {Object.values(items).map((item) => (
                 <div key={item.id}>
                     <p>{item.title}</p>
                     <img width="100" alt={item.title} src={item.image} />
                     <div>
                         <small>${item.price}</small>
+                        <small>
+                            <b> QTY: {item.qty}</b>
+                        </small>
                     </div>
 
-                    <button>Remove</button>
+                    <button onClick={() => dispatch(removeFromCart(item.id))}>
+                        Remove
+                    </button>
                 </div>
             ))}
             <h2>Total: ${total.toFixed(2)}</h2>
