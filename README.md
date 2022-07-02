@@ -44,13 +44,29 @@ const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
 
 In the example above, our reducer listens for an `ADD_TO_CART` event and updates the state with the payload in a functional way (by making a copy of the original state and updating that copy rather than the original)
 
+---
+
+## Ducks Pattern
+
+---
+
+In other tutorials, you may see `actions`, `action creators` and `reducers` living in separate files. This is confusing to me. This app leverages the `ducks` patterns. If it walks and talks like a duck...
+
+Bascially, all actions/reducers/action creators live in the same file which relate to particular functionality. For example `shopping.ducks.js` has all the logic for manipulating the state for our shopping cart.
+
+https://github.com/erikras/ducks-modular-redux
+
+---
+
 ## Watch 📼:
 
 ---
 
-https://www.loom.com/share/e29215f4c7a545c29f5c26e5d06f7819
+**Walkthrough:** https://www.loom.com/share/e29215f4c7a545c29f5c26e5d06f7819
 
-https://www.loom.com/share/2e26762f8234400bb2183f60440906be
+**Unit Tests with Redux:** https://www.loom.com/share/2e26762f8234400bb2183f60440906be
+
+---
 
 ## TODO
 
@@ -66,6 +82,6 @@ You need to add actions for:
 
 -   [ ] Updating the quantity of an item - for example, adding the same item should increment the quantity of that item rather than adding it twice
 
--   [ ] Ya know, Redux is a bit overkill for this app... how could use the Context API to lift state and achieve the same capability? How would you tests change?
+-   [ ] Ya know, Redux is a bit overkill for this app... how could use the Context API to lift state and achieve the same capability? How would your tests change?
 
 -   [ ] BONUS: Add some tests using `@testing-library`
