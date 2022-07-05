@@ -37,7 +37,10 @@ const ShoppingCart = () => {
                         </small>
                     </div>
 
-                    <button onClick={() => dispatch(removeFromCart(item.id))}>
+                    <button
+                        data-testid={`remove-item${item.id}`}
+                        onClick={() => dispatch(removeFromCart(item.id))}
+                    >
                         Remove
                     </button>
                 </div>
