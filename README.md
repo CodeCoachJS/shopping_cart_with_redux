@@ -1,5 +1,11 @@
 # Shopping Cart With Redux
 
+## Basic Setup
+
+Start by installing npm and cloning this repository into a working directory.  Then run `npm install` from inside the project directory. This will build and install React, Redux etc into your local environment. Then run `npm run start` to launch the development server. You sould be in business!
+
+## The Redux Concept
+
 Stop being afraid of redux. Under the hood, redux leverages the observer or pub-sub design pattern https://www.dofactory.com/javascript/design-patterns/observer
 
 Besides the boiler plate needed to set up redux in a react app, the underlying concepts are not overly complex:
