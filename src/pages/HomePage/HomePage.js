@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './HomePage.module.css';
 
-const HomePage = () => {
+const HomePage = ({ addToCart }) => {
 	const [products, setProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 

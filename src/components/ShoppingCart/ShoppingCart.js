@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ShoppingCart.module.css';
 
 const ShoppingCart = ({ isOpen, toggleCart, items }) => {
-	if (isOpen) {
+	if (!isOpen) {
 		return <></>;
 	}
 
