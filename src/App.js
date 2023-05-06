@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { HomePage } from './pages';
+import { LandingPage } from './pages/LandingPage/LandingPage';
 import { ShoppingCart } from './components';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
 	const [items, setItems] = useState([]);
@@ -11,16 +14,24 @@ function App() {
 		setItems((items) => [...items, product]);
 	};
 
-	// TODO: add routing and another page with a list of items from the cart
+	// TODO: add a landing page with a link to the `/shop`
 
 	return (
 		<div className='App'>
-			<HomePage addToCart={addToCart} />
 			<ShoppingCart
 				toggleCart={setIsOpen}
 				items={items}
 				isOpen={isOpen}
 			/>
+			<Router>
+				<Routes>
+					<Route path='/' element={<LandingPage />} />
+					<Route
+						path='/shop'
+						element={<HomePage addToCart={addToCart} />}
+					/>
+				</Routes>
+			</Router>
 		</div>
 	);
 }
