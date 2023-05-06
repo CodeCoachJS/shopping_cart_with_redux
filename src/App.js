@@ -1,25 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages';
 import { ShoppingCart } from './components';
-import configureStore from './store/store';
-import { Provider } from 'react-redux';
-
-const store = configureStore();
 
 function App() {
-    return (
-        <div className="App">
-            <Provider store={store}>
-                <Router>
-                    <Routes>
-                        <Route path="/" element={<HomePage />} />
-                    </Routes>
-                </Router>
-                <ShoppingCart />
-            </Provider>
-        </div>
-    );
+	const [items, setItems] = useState([]);
+
+	const addToCart = (product) => {
+		setItems((items) => [...items, product]);
+	};
+
+	return (
+		<div className='App'>
+			<Router>
+				<Routes>
+					<Route path='/' element={<HomePage />} />
+				</Routes>
+			</Router>
+			<ShoppingCart addToCart={addToCart} items={items} />
+		</div>
+	);
 }
 
 export default App;
