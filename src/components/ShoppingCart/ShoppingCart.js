@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './ShoppingCart.module.css';
+import { useSelector } from 'react-redux';
 
-const ShoppingCart = ({ isOpen, toggleCart, items }) => {
+const ShoppingCart = ({ toggleCart }) => {
+	const items = useSelector((state) => state.cart.cart);
+	const isOpen = useSelector((state) => state.cart.cartOpen);
 	if (!isOpen) {
 		return <></>;
 	}
