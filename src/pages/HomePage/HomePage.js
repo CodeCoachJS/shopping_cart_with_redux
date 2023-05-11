@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styles from './HomePage.module.css';
 import { addToCart } from '../../slices/cartSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const HomePage = () => {
 	const [products, setProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const dispatch = useDispatch();
-	const user = useSelector((state) => state.user.user);
 
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -31,7 +30,7 @@ const HomePage = () => {
 	return (
 		<div>
 			<header className={styles.header}>
-				<h1>{user} Shopping</h1>
+				<h1>Shopping</h1>
 			</header>
 			<section className={styles.productContainer}>
 				{isLoading && <h2>Loading Products...</h2>}
@@ -48,7 +47,7 @@ const HomePage = () => {
 						</div>
 
 						<button
-							onClick={() => dispatch(addToCart(product))} //emit global evnt (publish)
+							onClick={() => dispatch(addToCart(product))}
 							className={styles.shopNow}
 						>
 							Buy

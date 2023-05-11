@@ -7,21 +7,24 @@ export const cartSlice = createSlice({
 		cartOpen: false,
 	},
 	reducers: {
-		// actions
 		addToCart: (state, action) => {
 			state.cart.push(action.payload);
 			state.cartOpen = true;
 		},
 
 		removeFromCart: (state, action) => {
-			//TODO remove item from cart
+			state.cart = state.cart.filter(
+				(item) => item.id !== action.payload
+			);
+			console.log(state.cart);
 		},
-
-		// TODO close the cart
+		closeCart: (state) => {
+			state.cartOpen = false;
+		},
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, closeCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
