@@ -8,6 +8,17 @@ export const cartSlice = createSlice({
 	},
 	reducers: {
 		addToCart: (state, action) => {
+			// increment quantity for existing item
+			const existingItem = state.cart.find(
+				(item) => item.id === action.payload.id
+			);
+
+			if (existingItem) {
+				existingItem.quantity++;
+				return;
+			}
+
+			action.payload.quantity = 1;
 			state.cart.push(action.payload);
 			state.cartOpen = true;
 		},
@@ -16,7 +27,6 @@ export const cartSlice = createSlice({
 			state.cart = state.cart.filter(
 				(item) => item.id !== action.payload
 			);
-			console.log(state.cart);
 		},
 		closeCart: (state) => {
 			state.cartOpen = false;

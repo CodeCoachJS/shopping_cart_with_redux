@@ -2,65 +2,42 @@
 
 ## Basic Setup
 
-Start by installing npm and cloning this repository into a working directory.  Then run `npm install` from inside the project directory. This will build and install React, Redux etc into your local environment. Then run `npm run start` to launch the development server. You sould be in business!
+Start by installing npm and cloning this repository into a working directory. Then run `npm install` from inside the project directory. This will build and install React, Redux etc into your local environment. Then run `npm run start` and navigate to `/shop` to launch the development server. You sould be in business!
 
-## The Redux Concept
+## The Redux Toolkit Concept
 
-Stop being afraid of redux. Under the hood, redux leverages the observer or pub-sub design pattern https://www.dofactory.com/javascript/design-patterns/observer
+Fear not, Redux Toolkit simplifies Redux. Under the hood, Redux leverages the observer or pub-sub design pattern https://www.dofactory.com/javascript/design-patterns/observer
 
-Besides the boiler plate needed to set up redux in a react app, the underlying concepts are not overly complex:
+Besides the boilerplate needed to set up Redux Toolkit in a react app, the underlying concepts are not overly complex:
 
 `store`
 
-The `store` holds the global state as well as subscriptions and events to listen for.
+The store holds the global state as well as subscriptions and events to listen for.
 
-`actions`
+`slices`
 
-Actions are emitted or published by action creators. They often look like this:
-
-```js
-export const addToCart = (item) => {
-    return {
-        type: 'ADD_TO_CART', // the event
-        payload: item, // the payload
-    };
-};
-```
-
-`reducers`
-
-Reducers handle actions and use the payload to update the global state in the `store`. Redux strongly emphasizes using functional programming patterns and to avoid mutation of the global state. Here's a common reducer example:
+In Redux Toolkit, the traditional roles of action creators and reducers are combined into 'slices'. A slice represents a piece of state and the functions that can update that state. Here's an example:
 
 ```js
-const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
-    const { payload, type } = action;
-    switch (type) {
-        case 'ADD_TO_CART':
-            return {
-                ...state,
-                isOpen: true,
-                items: [...state.items, payload],
-            };
+import { createSlice } from '@reduxjs/toolkit';
 
-        default:
-            return state;
-    }
-};
+const cartSlice = createSlice({
+	name: 'cart',
+	initialState: { isOpen: false, items: [] },
+	reducers: {
+		addToCart: (state, action) => {
+			state.isOpen = true;
+			state.items.push(action.payload);
+		},
+	},
+});
+
+export const { addToCart } = cartSlice.actions;
+
+export default cartSlice.reducer;
 ```
 
-In the example above, our reducer listens for an `ADD_TO_CART` event and updates the state with the payload in a functional way (by making a copy of the original state and updating that copy rather than the original)
-
----
-
-## Ducks Pattern
-
----
-
-In other tutorials, you may see `actions`, `action creators` and `reducers` living in separate files. This is confusing to me. This app leverages the `ducks` patterns. If it walks and talks like a duck...
-
-Bascially, all actions/reducers/action creators live in the same file which relate to particular functionality. For example `shopping.ducks.js` has all the logic for manipulating the state for our shopping cart.
-
-https://github.com/erikras/ducks-modular-redux
+In the example above, our slice handles an addToCart action and updates the state with the payload in a functional way (by directly mutating the state, which Redux Toolkit allows us to do safely thanks to the Immer library)
 
 ---
 

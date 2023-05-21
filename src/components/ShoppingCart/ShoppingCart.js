@@ -12,7 +12,10 @@ const ShoppingCart = () => {
 		return <></>;
 	}
 
-	const total = items.reduce((acc, item) => acc + item.price, 0);
+	const total = items.reduce(
+		(acc, item) => acc + item.price * item.quantity,
+		0
+	);
 
 	return (
 		<div className={styles.shoppingCart}>
