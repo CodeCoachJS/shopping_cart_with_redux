@@ -2,7 +2,7 @@
 
 ## Basic Setup
 
-Start by installing npm and cloning this repository into a working directory.  Then run `npm install` from inside the project directory. This will build and install React, Redux etc into your local environment. Then run `npm run start` to launch the development server. You sould be in business!
+Start by installing npm and cloning this repository into a working directory. Then run `npm install` from inside the project directory. This will build and install React, Redux etc into your local environment. Then run `npm run start` to launch the development server. You sould be in business!
 
 ## The Redux Concept
 
@@ -20,10 +20,10 @@ Actions are emitted or published by action creators. They often look like this:
 
 ```js
 export const addToCart = (item) => {
-    return {
-        type: 'ADD_TO_CART', // the event
-        payload: item, // the payload
-    };
+	return {
+		type: 'ADD_TO_CART', // the event
+		payload: item, // the payload
+	};
 };
 ```
 
@@ -33,18 +33,18 @@ Reducers handle actions and use the payload to update the global state in the `s
 
 ```js
 const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
-    const { payload, type } = action;
-    switch (type) {
-        case 'ADD_TO_CART':
-            return {
-                ...state,
-                isOpen: true,
-                items: [...state.items, payload],
-            };
+	const { payload, type } = action;
+	switch (type) {
+		case 'ADD_TO_CART':
+			return {
+				...state,
+				isOpen: true,
+				items: [...state.items, payload],
+			};
 
-        default:
-            return state;
-    }
+		default:
+			return state;
+	}
 };
 ```
 
@@ -91,3 +91,7 @@ You need to add actions for:
 -   [ ] Ya know, Redux is a bit overkill for this app... how could use the Context API to lift state and achieve the same capability? How would your tests change?
 
 -   [ ] BONUS: Add some tests using `@testing-library`
+
+# PSST...
+
+**Try out the Redux Tool Kit version here: https://github.com/CodeCoachJS/shopping_cart_with_redux/tree/unsolved_rtk**
