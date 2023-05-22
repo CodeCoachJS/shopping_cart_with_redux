@@ -20,12 +20,14 @@ describe('ShoppingCart', () => {
 							title: 'Pants',
 							price: 12,
 							image: 'https://www.image1.com',
+							quantity: 2,
 						},
 						{
 							id: 2,
 							title: 'Shorts',
 							price: 11,
 							image: 'https://www.image2.com',
+							quantity: 1,
 						},
 					],
 				},
@@ -38,7 +40,7 @@ describe('ShoppingCart', () => {
 			</Provider>
 		);
 
-		expect(screen.getByText('Total: $23.00')).toBeInTheDocument();
+		expect(screen.getByText('Total: $35.00')).toBeInTheDocument();
 	});
 
 	// hmmm... how would you test this? The disappearance of an item

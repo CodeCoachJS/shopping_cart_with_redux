@@ -8,18 +8,15 @@ export const cartSlice = createSlice({
 	},
 	reducers: {
 		addToCart: (state, action) => {
-			state.cart.push(action.payload);
-			state.cartOpen = true;
+			// TODO
+			// action.payload is the product object
 		},
 
 		removeFromCart: (state, action) => {
-			state.cart = state.cart.filter(
-				(item) => item.id !== action.payload
-			);
-			console.log(state.cart);
+			// TODO
 		},
 		closeCart: (state) => {
-			state.cartOpen = false;
+			// TODO
 		},
 	},
 });
