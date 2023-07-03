@@ -1,31 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './HomePage.module.css';
 import { addToCart } from '../../slices/cartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../../slices/productsSlice';
 
 const HomePage = () => {
-	const [products, setProducts] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const { items, loading } = useSelector((state) => state.products);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const fetchProducts = async () => {
-			setIsLoading(true);
-			window
-				.fetch('https://fakestoreapi.com/products?limit=10')
-				.then((res) => res.json())
-				.then((json) => {
-					setIsLoading(false);
-					setProducts(json);
-				})
-				.catch((err) => {
-					setIsLoading(false);
-					throw err;
-				});
-		};
-		fetchProducts();
-	}, []);
+		if (!items.length) {
+			dispatch(fetchData());
+		}
+	}, [dispatch, items]);
 
 	return (
 		<div>
@@ -33,8 +21,8 @@ const HomePage = () => {
 				<h1>Shopping</h1>
 			</header>
 			<section className={styles.productContainer}>
-				{isLoading && <h2>Loading Products...</h2>}
-				{products.map((product) => (
+				{loading && <h2>Loading Products...</h2>}
+				{items.map((product) => (
 					<div className={styles.productCard} key={product.id}>
 						<p>{product.title}</p>
 						<img

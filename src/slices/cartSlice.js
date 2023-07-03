@@ -18,8 +18,7 @@ export const cartSlice = createSlice({
 				return;
 			}
 
-			action.payload.quantity = 1;
-			state.cart.push(action.payload);
+			state.cart.push({ ...action.payload, quantity: 1 });
 			state.cartOpen = true;
 		},
 
